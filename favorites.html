@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6366f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -10,7 +10,8 @@
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
-  <title>清单 - NCE Flow</title>
+  <title>我的清单 - NCE Flow</title>
+  <meta name="robots" content="noindex,follow">
   <script>
     (function () {
       try {
@@ -28,6 +29,7 @@
   <script src="assets/utils.js" defer></script>
   <script src="assets/app.js" defer></script>
   <script src="assets/search.js" defer></script>
+  <script src="assets/storage.js" defer></script>
   <script src="assets/favorites.js" defer></script>
 
   <!-- 主题切换逻辑 -->
@@ -289,6 +291,18 @@
         </div>
         <div class="settings-control">
           <button id="clearListBtn" class="back-inline" type="button" aria-label="清空清单" title="清空清单">清空清单</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-left">
+          <div class="settings-label">数据备份</div>
+          <div class="settings-desc">导出收藏、进度与设置为 JSON 文件，或从备份恢复（导入会覆盖当前数据）。</div>
+        </div>
+        <div class="settings-control" style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="favDataExportBtn" class="back-inline" type="button" aria-label="导出备份" title="导出备份">导出备份</button>
+          <button id="favDataImportBtn" class="back-inline" type="button" aria-label="导入备份" title="导入备份">导入备份</button>
+          <input type="file" id="favDataImportFile" accept=".json" hidden>
         </div>
       </div>
     </div>

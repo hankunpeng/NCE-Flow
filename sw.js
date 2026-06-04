@@ -3,7 +3,7 @@
  * 缓存策略：核心文件缓存优先，音频网络优先
  */
 
-const CACHE_NAME = 'nce-flow-v1.7.9-stability1';
+const CACHE_NAME = 'nce-flow-v1.8.0-sync1';
 
 // 核心静态资源（预缓存）
 const PRECACHE_ASSETS = [
@@ -21,6 +21,7 @@ const PRECACHE_ASSETS = [
   './assets/app.js',
   './assets/favorites.js',
   './assets/search.js',
+  './assets/storage.js',
   './static/data.json',
   './icons/icon-192x192.png',
   './icons/icon-512x512.png',
@@ -81,6 +82,11 @@ self.addEventListener('fetch', (event) => {
 
   // 只处理同源请求
   if (url.origin !== location.origin) {
+    return;
+  }
+
+  // 后端同步接口：始终走网络，绝不缓存（含 POST），避免读到陈旧数据
+  if (url.pathname.startsWith('/api/')) {
     return;
   }
 

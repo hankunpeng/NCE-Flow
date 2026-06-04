@@ -44,6 +44,9 @@
     const ttsLoopSelect = qs('#ttsLoopSelect');
     const ttsRateSelect = qs('#ttsRateSelect');
     const clearListBtn = qs('#clearListBtn');
+    const favDataExportBtn = qs('#favDataExportBtn');
+    const favDataImportBtn = qs('#favDataImportBtn');
+    const favDataImportFile = qs('#favDataImportFile');
 
     // --------------------------
     // 移动端浏览器：自动隐藏上下栏（非 PWA）
@@ -437,6 +440,16 @@
     if (ttsSettingsBtn) ttsSettingsBtn.addEventListener('click', () => openPanel(ttsOverlay, ttsPanel));
     if (ttsOverlay) ttsOverlay.addEventListener('click', () => closePanel(ttsOverlay, ttsPanel));
     if (ttsClose) ttsClose.addEventListener('click', () => closePanel(ttsOverlay, ttsPanel));
+
+    // 数据导出 / 导入（复用 assets/storage.js 的共享实现）
+    if (window.NCE_STORAGE) {
+      NCE_STORAGE.bindDataControls({
+        exportBtn: favDataExportBtn,
+        importBtn: favDataImportBtn,
+        importFile: favDataImportFile,
+        notify: showNotification
+      });
+    }
 
     document.addEventListener('click', (e) => {
       const actionBtn = e.target.closest('[data-action]');
