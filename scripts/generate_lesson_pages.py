@@ -10,7 +10,7 @@
 产物（提交进仓库；edge / Docker 直接发布）：
   - NCE{n}/{slug}.html   每课静态页（正文 + SEO + JSON-LD + 点读入口 + 上下课内链）
   - NCE{n}/index.html    各册课文目录页（内链枢纽）
-  - sitemap.xml          全量站点地图（首页 + 关于 + 册目录 + 所有课页）
+  - sitemap.xml          全量站点地图（首页 + 关于 + 捐助 + 册目录 + 所有课页）
 
 课程内容变动后重跑：  python3 scripts/generate_lesson_pages.py
 """
@@ -223,7 +223,8 @@ def main():
         data = json.load(f)
 
     sitemap_urls = [(f"{SITE}/", 'weekly', '1.0'),
-                    (f"{SITE}/about.html", 'monthly', '0.5')]
+                    (f"{SITE}/about.html", 'monthly', '0.5'),
+                    (f"{SITE}/donate.html", 'monthly', '0.4')]
     total = 0
     missing = []
 
